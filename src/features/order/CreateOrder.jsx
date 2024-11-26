@@ -41,13 +41,11 @@ function CreateOrder() {
 
   return (
     <div className="px-4 py-6">
-      <h2 className="mb-8 text-xl font-semibold">
-        Ready to order? Let&apos;s go!
-      </h2>
+      <h2 className="mb-8 text-xl font-semibold">Listo para ordenar!</h2>
 
       <Form method="POST">
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">First Name</label>
+          <label className="sm:basis-40">Nombre</label>
           <input
             type="text"
             name="customer"
@@ -58,7 +56,7 @@ function CreateOrder() {
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Phone number</label>
+          <label className="sm:basis-40">WhatsApp</label>
           <div className="grow">
             <input type="tel" name="phone" required className="input w-full" />
             {formErrors?.phone && (
@@ -70,7 +68,7 @@ function CreateOrder() {
         </div>
 
         <div className="relative mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Address</label>
+          <label className="sm:basis-40">Dirección</label>
           <div className="grow">
             <input
               type="text"
@@ -93,16 +91,16 @@ function CreateOrder() {
                   isLoadingAddress = 'loaded';
                 }}
               >
-                Get position
+                Locaclización
               </Button>
             </span>
           }
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label className="sm:basis-40">Position</label>
+          <label className="sm:basis-40">Localización</label>
           <input
-            type="link"
+            type="text"
             name="position"
             disabled
             value={
@@ -128,15 +126,17 @@ function CreateOrder() {
             onChange={(e) => setWithPriority(e.target.checked)}
             className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label htmlFor="priority">
+            Le podemos dar prioridad, por un adicional.
+          </label>
         </div>
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <Button disabled={isSubmitting || isLoadingAddress} type="small">
             {isSubmitting
-              ? 'Placing order...'
-              : `Order now from ${formatCurrency(totalPrice)}`}
+              ? 'Procesando la orden'
+              : `Ordena ahora por ${formatCurrency(totalPrice)}`}
           </Button>
         </div>
       </Form>
